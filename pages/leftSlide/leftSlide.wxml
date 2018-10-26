@@ -1,0 +1,36 @@
+<block wx:for="{{groups}}" wx:key="id" wx:for-index="idxgrp" wx:for-item="groups">
+  <view class="list-view-groups" id="{{groups.id}}" bindtap="groupclick">
+    <view class="list-view-image">
+      <block wx:if="{{groups.hidden}}">
+        <image class="list-image" id="image{{groups.id}}" src="../../images/right1.png"></image>
+      </block>
+      <block wx:else>
+        <image class="list-image" id="image{{groups.id}}" src="../../images/down.png"></image>
+      </block>
+    </view>
+    <view class="list-view-text">
+      <text class="list-text" id="name{{groups.id}}">{{groups.name}}</text>
+    </view>
+    <view class="list-view-count">
+      <text class="list-text-count" id="count{{groups.id}}">({{groups.count}})</text>
+    </view>
+  </view>
+  <view class="list-view-friends" hidden="{{groups.hidden}}" id="friendlist{{groups.id}}">
+
+    <view class="item-list" wx:for="{{itemData}}" wx:for-item="item" wx:for-index="index" wx:key="that">
+      <view class="item-info" data-index="{{index}}" bindtouchstart="touchS" bindtouchmove="touchM" bindtouchend="touchE" style="left:{{item.left + 'rpx'}}">
+        <image class="info-img" src="{{item.headappear}}"></image>
+        <view class="info-wrapper">
+          <view class="info-desc">
+            <view class="name">{{item.name}}</view>
+            <view class="time">{{item.info}}</view>
+          </view>
+        </view>
+      </view>
+      <view class="item-oper">
+        <view class="oper-delete" bindtap="yidong" data-id="{{item.id}}">移动 </view>
+        <view class="oper-delete" bindtap="itemDelete" data-nick_name='{{item.nick_name}}' data-id="{{item.id}}">删除 </view>
+      </view>
+    </view>
+  </view>
+</block>
